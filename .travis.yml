@@ -1,8 +1,3 @@
 language: ruby
-sudo: false
-cache: bundler
 rvm:
-  -2.2.0
-before_script:
- - chmod +x build_travis.sh
-script: "./build_travis.sh"
+  - 2.2.0
