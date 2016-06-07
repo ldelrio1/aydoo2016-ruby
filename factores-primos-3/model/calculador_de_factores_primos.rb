@@ -1,6 +1,5 @@
 class CalculadorDeFactoresPrimos
 
-
   def calcular_primos(numeroRecibido)
     @lista_de_primos = Array.new
     numero = numeroRecibido
