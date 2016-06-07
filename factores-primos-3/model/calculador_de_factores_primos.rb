@@ -6,7 +6,7 @@ class CalculadorDeFactoresPrimos
     for divisor in 2..numeroRecibido
       while numero % divisor == 0
         numero = numero / divisor
-        @lista_de_primos << divisor
+        @lista_de_primos.push divisor
       end
     end
     @lista_de_primos
