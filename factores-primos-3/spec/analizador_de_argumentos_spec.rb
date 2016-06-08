@@ -24,4 +24,25 @@ describe 'AnalizadorDeArgumentos' do
     expect(analizador.formato).to eq "Formato no aceptado. Las opciones posibles son pretty o quiet"
   end
 
+  it 'argumento de orden espera asc' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--format=quiet", "--sort:asc"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.orden).to eq "asc"
+  end
+
+  it 'argumento de orden espera des' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--format=quiet", "--sort:des"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.orden).to eq "des"
+  end
+
+  it 'argumento de orden erroneo espera mensaje' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--format=quiet", "--sort:nada"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.orden).to eq "Orden no aceptado. Las opciones posibles son asc o des"
+  end
+
 end
