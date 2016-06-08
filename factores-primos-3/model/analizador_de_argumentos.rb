@@ -10,6 +10,7 @@ class AnalizadorDeArgumentos
     @formato = "pretty"
     @orden = "asc"
     @salida_en_archivo = false
+    @archivo = nil
   end
 
   def analizar_argumentos(args)
@@ -40,7 +41,7 @@ class AnalizadorDeArgumentos
         end
       elsif argumento.include? "--output-file="
         @salida_en_archivo = true
-        @archivo = argumento.partition(':').last
+        @archivo = argumento.partition('=').last
 
       elsif (args[0].to_i > 2)
           @numero = args[0].to_i
