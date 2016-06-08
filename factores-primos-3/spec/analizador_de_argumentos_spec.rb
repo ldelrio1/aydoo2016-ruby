@@ -45,4 +45,18 @@ describe 'AnalizadorDeArgumentos' do
     expect(analizador.orden).to eq "Orden no aceptado. Las opciones posibles son asc o des"
   end
 
+  it 'sin argumentos verifica formato por defaut espera pretty' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = [ ]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.formato).to eq "pretty"
+  end
+
+  it 'sin argumentos verifica orden por defaut espera asc' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = [ ]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.orden).to eq "asc"
+  end
+
 end

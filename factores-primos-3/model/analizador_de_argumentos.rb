@@ -4,8 +4,8 @@ class AnalizadorDeArgumentos
   attr_reader :orden
 
   def initialize
-    formato = "pretty"
-    orden = "asc"
+    @formato = "pretty"
+    @orden = "asc"
 
   end
 
