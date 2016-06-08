@@ -11,14 +11,15 @@ class GeneradorDeSalida
     @formato = FormatoDeSalida.new
     @orden = OrdenDeSalida.new
 
-    @factores_primos = @calculador.calcular_primos(numero)
+    @numero = numero
+    @factores_primos = @calculador.calcular_primos(@numero)
 
     case formato
       when "pretty"
         if orden == "asc"
-          @salida = @formato.pretty(numero, @orden.ascendente(@factores_primos))
+          @salida = @formato.pretty(@numero, @orden.ascendente(@factores_primos))
         elsif orden == "des"
-          @salida = @formato.pretty(numero, @orden.descendente(@factores_primos))
+          @salida = @formato.pretty(@numero, @orden.descendente(@factores_primos))
         end
       when "quiet"
         if orden == "asc"
