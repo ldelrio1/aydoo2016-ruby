@@ -25,8 +25,7 @@ class AnalizadorDeArgumentos
           when "quiet"
             @formato = "quiet"
           when String
-            @formato = "Formato no aceptado. Las opciones posibles son pretty o quiet"
-            raise ArgumentError.new @formato
+            raise ArgumentError.new puts 'Formato no aceptado. Las opciones posibles son pretty o quiet'
         end
       elsif argumento.include? "--sort:"
         @orden_ingresado = argumento.partition(':').last
@@ -36,17 +35,20 @@ class AnalizadorDeArgumentos
           when "asc"
             @orden = "asc"
           when String
-            @orden = "Orden no aceptado. Las opciones posibles son asc o des"
-            raise ArgumentError.new @orden
+            raise ArgumentError.new puts 'Orden no aceptado. Las opciones posibles son asc o des'
         end
       elsif argumento.include? "--output-file="
-        @salida_en_archivo = true
         @archivo = argumento.partition('=').last
-
+        @extension = @archivo.partition('.').last
+        if (@extension == "txt")
+          @salida_en_archivo = true
+        else
+          raise NameError.new puts 'Nombre de archivo incorrecto'
+        end
       elsif (args[0].to_i > 2)
           @numero = args[0].to_i
         else
-          raise ArgumentError.new "No se pueden ingresar numeros menores a 2"
+          raise ArgumentError.new puts 'No se pueden ingresar numeros menores a 2'
         end
       end
     end

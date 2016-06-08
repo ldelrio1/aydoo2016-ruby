@@ -3,26 +3,20 @@ require_relative '../model/analizador_de_argumentos'
 
 describe 'AnalizadorDeArgumentos' do
 
-  it 'argumento espera pretty' do
+  it 'argumento de formato espera pretty' do
     analizador = AnalizadorDeArgumentos.new
     array_de_argumentos = ["--format=pretty"]
     analizador.analizar_argumentos(array_de_argumentos)
     expect(analizador.formato).to eq "pretty"
   end
 
-  it 'argumento espera quiet' do
+  it 'argumento de formato espera quiet' do
     analizador = AnalizadorDeArgumentos.new
     array_de_argumentos = ["--format=quiet"]
     analizador.analizar_argumentos(array_de_argumentos)
     expect(analizador.formato).to eq "quiet"
   end
 
-  it 'argumento de formato erroneo espera mensaje' do
-    analizador = AnalizadorDeArgumentos.new
-    array_de_argumentos = ["--format=nada"]
-    analizador.analizar_argumentos(array_de_argumentos)
-    expect(analizador.formato).to eq "Formato no aceptado. Las opciones posibles son pretty o quiet"
-  end
 
   it 'argumento de orden espera asc' do
     analizador = AnalizadorDeArgumentos.new
@@ -33,17 +27,25 @@ describe 'AnalizadorDeArgumentos' do
 
   it 'argumento de orden espera des' do
     analizador = AnalizadorDeArgumentos.new
-    array_de_argumentos = ["--format=quiet", "--sort:des"]
+    array_de_argumentos = ["--format=pretty", "--sort:des"]
     analizador.analizar_argumentos(array_de_argumentos)
     expect(analizador.orden).to eq "des"
   end
 
-  it 'argumento de orden erroneo espera mensaje' do
+  it 'argumentos en distinto orden verifica orden espera des' do
     analizador = AnalizadorDeArgumentos.new
-    array_de_argumentos = ["--format=quiet", "--sort:nada"]
+    array_de_argumentos = ["--sort:des","--format=pretty"]
     analizador.analizar_argumentos(array_de_argumentos)
-    expect(analizador.orden).to eq "Orden no aceptado. Las opciones posibles son asc o des"
+    expect(analizador.orden).to eq "des"
   end
+
+  it 'argumentos en distinto orden verifica formato espera quiet' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--sort:des","--format=quiet"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    expect(analizador.orden).to eq "des"
+  end
+
 
   it 'sin argumentos verifica formato por defaut espera pretty' do
     analizador = AnalizadorDeArgumentos.new
@@ -57,6 +59,31 @@ describe 'AnalizadorDeArgumentos' do
     array_de_argumentos = [ ]
     analizador.analizar_argumentos(array_de_argumentos)
     expect(analizador.orden).to eq "asc"
+  end
+
+  it 'argumento de salida en archivo espera salida en archivo true' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--output-file=salida.txt"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    salida_en_archivo = true
+    expect(analizador.salida_en_archivo).to eq salida_en_archivo
+  end
+
+
+  it 'no hay argumento de salida en archivo se espera salida en archivo false' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--sort:des"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    salida_en_archivo = false
+    expect(analizador.salida_en_archivo).to eq salida_en_archivo
+  end
+
+  it 'argumento de salida en archivo se espera nombre de archivo' do
+    analizador = AnalizadorDeArgumentos.new
+    array_de_argumentos = ["--sort:des","--output-file=salida.txt"]
+    analizador.analizar_argumentos(array_de_argumentos)
+    archivo = "salida.txt"
+    expect(analizador.archivo).to eq archivo
   end
 
 end

@@ -33,7 +33,7 @@ describe 'CalculadorDeFactoresPrimos' do
     expect(calculador.calcular_primos(360)).to match_array(array_resultado)
   end
 
-  it 'con factores primos de 0' do
+  it 'con factores primos de 132 espera 2 2 3 11' do
     calculador = CalculadorDeFactoresPrimos.new
     array_resultado = [2,2,3,11]
     expect(calculador.calcular_primos(132)).to match_array(array_resultado)
