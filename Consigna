@@ -1,0 +1,31 @@
+Se pide agregar al programa ya realizado la siguiente funcionalidades:
+
+--output-file=filename: cuando se pasa este parámetro, la salida del programa debe escribir en el archivo especificado. El nombre del archivo debe interpretarse como una ruta relativa, o sea si solo viene un nombre como "salida.txt" debe generando entonces el archivo "salida.txt" en la misma ubicación donde se encuentra el jar.
+ 
+--sort=asc|desc cuando se pasa esta opción, la secuencia de números resultantes debe generarse orden ascendente (asc) o descendente (des), si no hay especificación se asume que es ascendente
+Ejemplos:
+
+# La siguiente sentencia guarda el resultado en el archivo salida.txt respetando la especificacin de formato
+java -jar factores-primos.jar 360 --format=pretty --output-file=salida.txt
+
+ 
+# Genera la salida en orden descendente
+ruby program.rb 360 --format=quiet --sort:des
+5
+3
+3
+2
+2
+2
+
+# Genera la salida en orden ascendente
+ruby program.jar 360 --format=quiet --sort:asc
+2
+2
+2
+3
+3
+5
+ 
+
+Partir de la solución factores primos 2, generar una carpeta llamada factores-primos-3 y al finalizar taggear con el mismo nombre que la carpeta
